@@ -5,8 +5,6 @@ const Authors = ({ show, result }) => {
     return null
   }
 
-  const authors = []
-
   if (result.loading) {
     return <div>loading...</div>
   }
