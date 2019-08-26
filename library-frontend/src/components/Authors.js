@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 
-const Authors = (props) => {
-  if (!props.show) {
+const Authors = ({ show, result }) => {
+  if (!show) {
     return null
   }
 
   const authors = []
+
+  if (result.loading) {
+    return <div>loading...</div>
+  }
 
   return (
     <div>
@@ -17,7 +21,7 @@ const Authors = (props) => {
             <th>born</th>
             <th>books</th>
           </tr>
-          {authors.map(a =>
+          {result.data.allAuthors.map(a =>
             <tr key={a.name}>
               <td>{a.name}</td>
               <td>{a.born}</td>
