@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Authors = ({ show, result, editAuthor }) => {
+const Authors = ({ show, result, editAuthor, token }) => {
   const [name, setName] = useState('')
   const [year, setYear] = useState('')
 
@@ -45,20 +45,23 @@ const Authors = ({ show, result, editAuthor }) => {
           )}
         </tbody>
       </table>
-
-      <h2>Set birthyear</h2>
-      <form onSubmit={updateBirthyear}>
-        <select value={name} onChange={(e) => setName(e.target.value)}>
-          {result.data.allAuthors.map(a =>
-            <option key={a.name} value={a.name}>{a.name}</option>
-          )}
-        </select>
+      {token &&
         <div>
-          born
-          <input value={year} onChange={(e) => setYear(e.target.value)} type='number' />
+          <h2>Set birthyear</h2>
+          <form onSubmit={updateBirthyear}>
+            <select value={name} onChange={(e) => setName(e.target.value)}>
+              {result.data.allAuthors.map(a =>
+                <option key={a.name} value={a.name}>{a.name}</option>
+              )}
+            </select>
+            <div>
+              born
+              <input value={year} onChange={(e) => setYear(e.target.value)} type='number' />
+            </div>
+            <button type='submit'>update author</button>
+          </form>
         </div>
-        <button type='submit'>update author</button>
-      </form>
+      }
     </div>
   )
 }
