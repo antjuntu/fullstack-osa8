@@ -30,6 +30,7 @@ const ALL_BOOKS = gql`
       bookCount
     }
     id
+    genres
   }
 }
 `
